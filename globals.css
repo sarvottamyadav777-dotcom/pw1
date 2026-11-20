@@ -1,0 +1,552 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: "Plus Jakarta Sans", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-inter-mono), ui-monospace, monospace;
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --radius: 1rem;
+  --background: #f8faff;
+  --foreground: #1b2d4d;
+  --card: #ffffff;
+  --card-foreground: #1b2d4d;
+  --popover: #ffffff;
+  --popover-foreground: #1b2d4d;
+  --primary: #3266e3;
+  --primary-foreground: #ffffff;
+  --secondary: #eef3fb;
+  --secondary-foreground: #405574;
+  --muted: #f1f5fa;
+  --muted-foreground: #71809a;
+  --accent: #f0edff;
+  --accent-foreground: #7252d2;
+  --destructive: #dc4545;
+  --border: #e2e9f3;
+  --input: #dce5f0;
+  --ring: #8b72e8;
+  --chart-1: #3266e3;
+  --chart-2: #20a2b8;
+  --chart-3: #8058d7;
+  --chart-4: #29956d;
+  --chart-5: #d49b36;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #1b2d4d;
+  --sidebar-primary: #3266e3;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #eef3fb;
+  --sidebar-accent-foreground: #405574;
+  --sidebar-border: #e2e9f3;
+  --sidebar-ring: #8b72e8;
+}
+
+.dark {
+  color-scheme: dark;
+  --background: #0a1020;
+  --foreground: #e8eef9;
+  --card: #121c30;
+  --card-foreground: #e8eef9;
+  --popover: #121c30;
+  --popover-foreground: #e8eef9;
+  --primary: #8b72f2;
+  --primary-foreground: #ffffff;
+  --secondary: #1a2740;
+  --secondary-foreground: #d5def0;
+  --muted: #172238;
+  --muted-foreground: #9aa9c2;
+  --accent: #282348;
+  --accent-foreground: #c9baff;
+  --destructive: #f06d78;
+  --border: #293750;
+  --input: #2a3953;
+  --ring: #9b85f4;
+  --sidebar: #10192b;
+  --sidebar-foreground: #e8eef9;
+  --sidebar-primary: #8b72f2;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #1a2740;
+  --sidebar-accent-foreground: #e8eef9;
+  --sidebar-border: #293750;
+  --sidebar-ring: #9b85f4;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply text-foreground antialiased;
+    background-color: var(--background);
+    color: var(--foreground);
+    font-feature-settings: "ss01" on, "cv01" on;
+  }
+  ::selection {
+    background: rgba(115, 91, 222, 0.18);
+    color: #172d50;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Elite Study — evergreen glass design system
+--------------------------------------------------------------------------- */
+
+/* Soft blue-violet canvas inspired by the supplied mobile UI references. */
+.sb-aurora {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(900px 600px at 88% 0%, rgba(201, 216, 255, .22), transparent 62%),
+    radial-gradient(900px 650px at -8% 35%, rgba(218, 228, 255, .18), transparent 60%),
+    #f8faff;
+}
+.sb-aurora::before,
+.sb-aurora::after { display: none; }
+.sb-grain { display: none; }
+
+/* Core surfaces */
+.glass {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid #e4eaf3;
+  box-shadow: 0 8px 28px rgba(34, 58, 100, .055);
+}
+.glass-soft {
+  background: #f6f8fc;
+  border: 1px solid #e7edf5;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.9);
+}
+
+/* Shared dark surfaces for cards built with the glass primitives. */
+.dark .glass {
+  background: #121c30;
+  border-color: #293750;
+  color: #e8eef9;
+  box-shadow: 0 10px 30px rgba(0,0,0,.18);
+}
+.dark .glass-soft {
+  background: #172238;
+  border-color: #293750;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.025);
+}
+.dark .btn-glass {
+  background: #172238;
+  border-color: #293750;
+  color: #d5def0;
+}
+.dark .btn-glass:hover {
+  background: #202d45;
+  border-color: #405477;
+}
+
+/* specular streak that slides on hover */
+.glass-sheen {
+  overflow: hidden;
+}
+.glass-sheen::after {
+  content: "";
+  position: absolute;
+  inset: -60% -20%;
+  background: linear-gradient(
+    100deg,
+    transparent 42%,
+    rgba(117, 85, 219, 0.12) 50%,
+    transparent 58%
+  );
+  transform: translateX(-120%);
+  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+.glass-sheen:hover::after {
+  transform: translateX(120%);
+}
+
+.glass-hover {
+  transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+.glass-hover:hover {
+  transform: translateY(-3px);
+  border-color: #c7d5f2;
+  box-shadow: 0 16px 36px rgba(42, 72, 132, .11);
+}
+
+/* Blue-violet accent text */
+.text-gold {
+  background: linear-gradient(110deg, #2867e8 0%, #7553d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Primary blue-violet action button */
+.btn-gold {
+  position: relative;
+  background: linear-gradient(110deg, #2f68e8 0%, #7655db 100%);
+  color: #ffffff;
+  border: 1px solid rgba(255,255,255,.35);
+  box-shadow: 0 8px 22px rgba(61, 94, 202, .2);
+  transition: transform .22s ease, box-shadow .22s ease, filter .22s ease;
+}
+.btn-gold:hover { transform: translateY(-2px); filter: brightness(1.04); box-shadow: 0 12px 28px rgba(61, 94, 202, .25); }
+.btn-gold:active { transform: translateY(0); }
+
+/* Light secondary surface */
+.btn-glass {
+  background: #ffffff;
+  border: 1px solid #e0e7f1;
+  box-shadow: 0 2px 8px rgba(31, 54, 94, .035);
+  transition: background .2s ease, border-color .2s ease, transform .2s ease;
+}
+.btn-glass:hover { background: #f6f8ff; border-color: #c8d6f0; transform: translateY(-1px); }
+
+
+/* thin custom scrollbars */
+.sb-scroll::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.sb-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.sb-scroll::-webkit-scrollbar-thumb {
+  background: rgba(117, 85, 219, 0.28);
+  border-radius: 999px;
+}
+.sb-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(117, 85, 219, 0.5);
+}
+
+/* marquee ribbon */
+@keyframes sb-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.sb-marquee {
+  animation: sb-marquee 30s linear infinite;
+}
+
+/* fade-up entrance */
+@keyframes sb-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.sb-fade-up {
+  animation: sb-fade-up 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* shimmering skeleton */
+.sb-skeleton {
+  position: relative;
+  overflow: hidden;
+  background: #edf2f9;
+}
+.sb-skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(126, 146, 181, 0.12),
+    transparent
+  );
+  animation: sb-shimmer 1.4s infinite;
+}
+@keyframes sb-shimmer {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+/* player range input */
+.sb-range {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 5px;
+  border-radius: 999px;
+  outline: none;
+  cursor: pointer;
+}
+.sb-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: #7655db;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 10px rgba(118, 85, 219, 0.35);
+}
+.sb-range::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: #7655db;
+  border: 2px solid #ffffff;
+}
+
+/* prose helper for announcement html */
+.sb-prose {
+  color: #344563;
+  line-height: 1.65;
+  word-break: break-word;
+}
+.sb-prose a {
+  color: #3266e3;
+  text-decoration: underline;
+}
+.sb-prose img {
+  max-width: 100%;
+  border-radius: 12px;
+}
+
+/* Static navbar — does not move on scroll */
+.sb-nav-static {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+.sb-nav-surface {
+  background: #ffffff;
+  border: 1px solid #e5ebf4;
+  box-shadow: 0 8px 24px rgba(31, 54, 94, .07);
+}
+
+/* The single in-app player owns its controls and hides them after three seconds. */
+.sb-player-controls {
+  padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+}
+
+.sb-native-player:fullscreen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 0;
+}
+.sb-native-player:fullscreen .sb-native-video {
+  flex: 1;
+  min-height: 0;
+  height: 0;
+}
+
+/* Performance and small-screen refinements */
+html {
+  scroll-padding-top: 5.5rem;
+}
+body {
+  min-width: 320px;
+  overflow-x: hidden;
+}
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+.sb-scroll {
+  overscroll-behavior-inline: contain;
+  -webkit-overflow-scrolling: touch;
+}
+.sb-lazy-card {
+  content-visibility: auto;
+  contain-intrinsic-size: 390px;
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+
+/* ---------------------------------------------------------------------------
+   Light / dark appearance — persisted by next-themes.
+   The dark palette keeps the same card hierarchy and purple learning accents.
+--------------------------------------------------------------------------- */
+.dark body {
+  background-color: #0a1020;
+  color: #e8eef9;
+}
+.dark .sb-aurora {
+  background:
+    radial-gradient(900px 600px at 88% 0%, rgba(88, 75, 164, .16), transparent 62%),
+    radial-gradient(900px 650px at -8% 35%, rgba(38, 75, 132, .15), transparent 60%),
+    #0a1020;
+}
+.dark main {
+  background-color: #0a1020;
+  color: #e8eef9;
+}
+.dark .glass,
+.dark .glass-soft {
+  background-color: #121c30;
+  border-color: #293750;
+  color: #e8eef9;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, .18);
+}
+.dark .sb-nav-static {
+  background: rgba(10, 16, 32, .92);
+  border-color: #25324a;
+}
+.dark .sb-nav-static > div {
+  background: #121c30;
+  border-color: #293750;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .18);
+}
+.dark .sb-nav-surface {
+  background: #121c30;
+  border-color: #293750;
+}
+.dark .sb-skeleton {
+  background: #1a2740;
+}
+.dark .theme-toggle-thumb {
+  background-color: #ffffff !important;
+}
+.dark .sb-skeleton::after {
+  background: linear-gradient(90deg, transparent, rgba(180, 195, 224, .08), transparent);
+}
+.dark .sb-prose {
+  color: #d2dced;
+}
+.dark .sb-prose a {
+  color: #9aabff;
+}
+.dark input,
+.dark textarea,
+.dark select {
+  color: #e8eef9;
+}
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #8494af;
+}
+.dark [class*="bg-white"] {
+  background-color: #121c30 !important;
+}
+.dark [class*="bg-[#f7"],
+.dark [class*="bg-[#f8"],
+.dark [class*="bg-[#fb"],
+.dark [class*="bg-[#f6"],
+.dark [class*="bg-[#f4"],
+.dark [class*="bg-[#f1"],
+.dark [class*="bg-[#f0"],
+.dark [class*="bg-[#eef"],
+.dark [class*="bg-[#edf"] {
+  background-color: #172238 !important;
+}
+.dark [class*="border-[#e"],
+.dark [class*="border-[#d"] {
+  border-color: #293750 !important;
+}
+.dark [class~="text-[#14294c]"],
+.dark [class~="text-[#172d50]"],
+.dark [class~="text-[#172b4c]"],
+.dark [class~="text-[#183052]"],
+.dark [class~="text-[#1b2d4d]"],
+.dark [class~="text-[#1b3154]"],
+.dark [class~="text-[#1c2e4c]"],
+.dark [class~="text-[#1c3154]"],
+.dark [class~="text-[#20385e]"],
+.dark [class~="text-[#233a60]"],
+.dark [class~="text-[#263a5c]"],
+.dark [class~="text-[#344563]"],
+.dark [class~="text-[#405574]"],
+.dark [class~="text-[#52627c]"],
+.dark [class~="text-[#526991]"],
+.dark [class~="text-[#536681]"],
+.dark [class~="text-[#64738c]"],
+.dark [class~="text-[#6c7b95]"],
+.dark [class~="text-[#6e7d95]"],
+.dark [class~="text-[#71809a]"],
+.dark [class~="text-[#74829a]"],
+.dark [class~="text-[#7b89a0]"],
+.dark [class~="text-[#7c899f]"],
+.dark [class~="text-[#7d8aa0]"],
+.dark [class~="text-[#8290a6]"],
+.dark [class~="text-[#8592a8]"],
+.dark [class~="text-[#8794aa]"],
+.dark [class~="text-[#8a96aa]"],
+.dark [class~="text-[#8b96a9]"],
+.dark [class~="text-[#8995a9]"],
+.dark [class~="text-[#9aa6b8]"],
+.dark [class~="text-[#9aa6ba]"] {
+  color: #d8e2f2 !important;
+}
+.dark .sb-scroll::-webkit-scrollbar-thumb {
+  background: rgba(157, 137, 244, .42);
+}
+@media (prefers-reduced-motion: reduce) {
+  .sb-fade-up { animation: none !important; }
+}
+
+.sb-batch-description p + p { margin-top: .5rem; }
+.sb-batch-description ul,
+.sb-batch-description ol { margin: .45rem 0 .45rem 1.2rem; padding-left: .7rem; }
+.sb-batch-description ul { list-style: disc; }
+.sb-batch-description ol { list-style: decimal; }
+.sb-batch-description li + li { margin-top: .2rem; }
+.sb-batch-description a { color: #9fc3ff; text-decoration: underline; text-underline-offset: 3px; }
+.sb-batch-description table { width: 100%; border-collapse: collapse; margin: .6rem 0; }
+.sb-batch-description th,
+.sb-batch-description td { border: 1px solid rgba(255,255,255,.18); padding: .4rem .55rem; text-align: left; }
